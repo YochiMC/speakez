@@ -1,5 +1,8 @@
 @extends('layouts.principal')
 @section('titulo', 'SpeakEz')
+@section('estilos')
+
+@endsection
 @section('contenido')
     <h1>Bienvenido a SpeakEz</h1>
     <p>Esta es una aplicación para turistas.</p>

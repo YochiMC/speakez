@@ -1,4 +1,4 @@
-<div>
+<div class="menu">
     <h1>SpeakEz</h1>
     <nav>
         <ul>

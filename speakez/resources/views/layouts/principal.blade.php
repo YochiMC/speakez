@@ -12,16 +12,19 @@
         rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/principal.css') }}">
     <title>@yield('titulo')</title>
+    @yield('estilos')
 </head>
 <header>
     <x-menu></x-menu>
-    <header>
+</header>
 
-        <body>
-            @yield('contenido')
-        </body>
-        <footer>
-            <p>&copy; 2025 SpeakEz. Todos los derechos reservados.</p>
-        </footer>
+<body>
+    <div class="contenedor-contenido">
+        @yield('contenido')
+    </div>
+</body>
+<footer>
+    <p>&copy; 2025 SpeakEz. Todos los derechos reservados.</p>
+</footer>
 
 </html>
