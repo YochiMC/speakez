@@ -1,0 +1,31 @@
+/* Responsive */
+@media (max-width: 768px) {
+    .dashboard-container {
+        grid-template-columns: 1fr;
+        padding: 15px;
+    }
+    
+    .language-container {
+        grid-template-columns: 1fr 1fr;
+        padding: 20px;
+    }
+    
+    .secondary-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .language-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .subsection-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .logo {
+        font-size: 2rem;
+    }
+}
