@@ -1,4 +1,4 @@
-La aplicación web funciona con el comando http-server para desplegarse. Es necesario utilizar el siguiente comando:
+Para usar la aplicación es necesario utilizar un servidor http, en este caso usando http-server por su facilidad, se instala con el siguiente comando:
 
 npm install -g live-server
 
