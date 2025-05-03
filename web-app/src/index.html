@@ -1,76 +1,48 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SpeakEZ - Test Básico</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', sans-serif;
-            background-color: #f5f5f5;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-        }
-        .test-box {
-            background: linear-gradient(135deg, #FF5722, #2196F3);
-            color: white;
-            padding: 30px;
-            border-radius: 10px;
-            text-align: center;
-            margin-bottom: 20px;
-            animation: pulse 2s infinite;
-        }
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-        .component {
-            border: 1px solid #ddd;
-            padding: 20px;
-            margin: 10px 0;
-            border-radius: 5px;
-            background-color: white;
-            width: 100%;
-            max-width: 600px;
-        }
-    </style>
+    <title>SpeakEZ - Descubre León</title>
+    <!-- ARCHIVOS CSS - Mantener en index.html -->
+    <link rel="stylesheet" href="styles/variables.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/components.css">
+    <link rel="stylesheet" href="styles/animations.css">
+    <link rel="stylesheet" href="styles/responsive.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
+
 <body>
-    <div class="test-box">
-        <h1>SpeakEZ - Prueba Básica</h1>
-        <p>Si puedes ver esta página, la estructura básica funciona correctamente</p>
-    </div>
-    
-    <div class="component" id="header-test">
-        <h2>Prueba de Componente: Header</h2>
-        <button onclick="loadTest('header')">Cargar Header</button>
-        <div id="header-container"></div>
-    </div>
-    
-    <script>
-        function loadTest(component) {
-            const container = document.getElementById(`${component}-container`);
-            container.innerHTML = '<p>Cargando componente...</p>';
-            
-            fetch(`views/components/${component}.html`)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`HTTP error ${response.status}`);
-                    }
-                    return response.text();
-                })
-                .then(html => {
-                    container.innerHTML = html;
-                    console.log(`Componente ${component} cargado correctamente`);
-                })
-                .catch(error => {
-                    container.innerHTML = `<p style="color: red;">Error: ${error.message}</p>`;
-                    console.error(`Error cargando ${component}:`, error);
-                });
-        }
-    </script>
+
+    <!-- componentes -->
+    <div id="loader-container"></div>
+    <div id="language-container"></div>
+    <div id="welcome-video-container"></div>
+    <div id="header-container"></div>
+    <div id="info-bar-container"></div>
+    <div id="dashboard-container"></div>
+
+    <!--secciones-->
+    <div id="explora-section-container"></div>
+    <div id="saborea-section-container"></div>
+    <div id="comida-tipica-section-container"></div>
+    <div id="restaurantes-section-container"></div>
+    <div id="visita-section-container"></div>
+    <div id="eventos-section-container"></div>
+    <div id="shoping-section-container"></div>
+    <div id="hospedaje-section-container"></div>
+
+
+    <!-- SCRIPTS - Mantener referencias en index.html pero crear archivos separados -->
+    <script src="js/translations.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/camera.js"></script>
+    <!-- Parece que navigation.js está duplicado - corregir -->
+    <script src="js/weather.js"></script>
+    <!-- Falta main.js - añadir -->
+    <script src="js/main.js"></script>
 </body>
+
 </html>

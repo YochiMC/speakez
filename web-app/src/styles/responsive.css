@@ -15,17 +15,3 @@
         align-items: center;
     }
 }
-
-@media (max-width: 480px) {
-    .language-container {
-        grid-template-columns: 1fr;
-    }
-    
-    .subsection-container {
-        grid-template-columns: 1fr;
-    }
-    
-    .logo {
-        font-size: 2rem;
-    }
-}
