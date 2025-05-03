@@ -27,7 +27,7 @@ window.onload = () => {
     loadComponent('language-container', 'views/components/language-selector.html');
     loadComponent('welcome-video-container', 'views/components/welcome-video.html');
     loadComponent('header-container', 'views/components/header.html');
-    loadComponent('infor-bar-container', 'views/components/infor-bar.html');
+    loadComponent('info-bar-container', 'views/components/info-bar.html');
     loadComponent('dashboard-container', 'views/components/dashboard.html');
     loadSection('explora-section-container', 'views/sections/explora-section.html');
     loadSection('saborea-section-container', 'views/sections/saborea-section.html');

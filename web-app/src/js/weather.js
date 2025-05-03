@@ -10,6 +10,12 @@ function updateClock() {
     timeElement.textContent = `${hours}:${minutes}:${seconds}`;
 }
 
+// Actualizar cada segundo
+setInterval(updateClock, 1000);
+
+// Ejecutar inmediatamente al cargar
+updateClock();
+
 // Obtener clima
 function fetchWeather() {
     // Simulación de API de clima
