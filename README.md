@@ -1,6 +1,6 @@
 Para usar la aplicación es necesario utilizar un servidor http, en este caso usando http-server por su facilidad, se instala con el siguiente comando:
 
-npm install -g live-server
+npm install -g http-server
 
 Es necesario estar en la carperta web-app de esta forma:
 
