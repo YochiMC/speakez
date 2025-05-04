@@ -9,3 +9,12 @@ body {
     background-color: var(--light-color);
     overflow-x: hidden;
 }
+
+#google_translate_element select {
+    background-color: #f4f4f4;
+    color: #333;
+    border: 1px solid #ccc;
+    padding: 5px;
+    border-radius: 4px;
+}
+

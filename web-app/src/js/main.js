@@ -33,7 +33,7 @@ window.onload = () => {
     loadSection('saborea-section-container', 'views/sections/saborea-section.html');
     loadSection('comida-tipica-section-container', 'views/sections/comida-tipica-section.html');
     loadSection('restaurantes-section-container', 'views/sections/restaurantes-section.html');
-    loadSection('visitas-section-container', 'views/sections/visita-section.html');
+    loadSection('visita-section-container', 'views/sections/visita-section.html');
     loadSection('eventos-section-container', 'views/sections/eventos-section.html');
     loadSection('shopping-section-container', 'views/sections/shopping-section.html');
     loadSection('hospedaje-section-container', 'views/sections/hospedaje-section.html');
