@@ -1,32 +1,34 @@
-// Actualizar reloj
-function updateClock() {
-    const now = new Date();
-    const timeElement = document.getElementById('currentTime');
-    
-    const hours = now.getHours().toString().padStart(2, '0');
-    const minutes = now.getMinutes().toString().padStart(2, '0');
-    const seconds = now.getSeconds().toString().padStart(2, '0');
-    
-    timeElement.textContent = `${hours}:${minutes}:${seconds}`;
-}
+document.addEventListener('DOMContentLoaded', () => {
+    // Actualizar reloj
+    function updateClock() {
+        const now = new Date();
+        const timeElement = document.getElementById('currentTime');
 
-// Actualizar cada segundo
-setInterval(updateClock, 1000);
+        if (timeElement) {
+            const hours = now.getHours().toString().padStart(2, '0');
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const seconds = now.getSeconds().toString().padStart(2, '0');
 
-// Ejecutar inmediatamente al cargar
-updateClock();
+            timeElement.textContent = `${hours}:${minutes}:${seconds}`;
+        }
+    }
 
-// Obtener clima
-function fetchWeather() {
-    // Simulación de API de clima
-    const temperature = Math.floor(Math.random() * 10) + 20; // 20-30°C
-    document.getElementById('currentTemp').textContent = `${temperature}°C`;
-    
-    // En una implementación real, usar una API de clima como OpenWeatherMap
-    // fetch('https://api.openweathermap.org/data/2.5/weather?q=Leon,mx&units=metric&appid=YOUR_API_KEY')
-    //     .then(response => response.json())
-    //     .then(data => {
-    //         document.getElementById('currentTemp').textContent = `${Math.round(data.main.temp)}°C`;
-    //     })
-    //     .catch(error => console.error('Error al obtener el clima:', error));
-}
+    // Obtener clima
+    function fetchWeather() {
+        fetch('https://api.openweathermap.org/data/2.5/weather?q=Leon,mx&units=metric&appid=TU_API_KEY')
+            .then(response => response.json())
+            .then(data => {
+                const tempElement = document.getElementById('currentTemp');
+                if (tempElement) {
+                    tempElement.textContent = `${Math.round(data.main.temp)}°C`;
+                }
+            })
+            .catch(error => console.error('Error al obtener el clima:', error));
+    }
+
+    updateClock();
+    fetchWeather();
+
+    setInterval(updateClock, 1000); // Cada segundo
+    setInterval(fetchWeather, 5 * 60 * 1000); // Cada 5 minutos
+});
