@@ -219,10 +219,12 @@ function selectLanguage(lang) {
     videoPlayer.play();
     
     // Cuando termina el video, mostrar la página principal
-    videoPlayer.onended = function() {
+    videoPlayer.onended = function () {
         welcomeVideo.style.display = 'none';
+        document.getElementById('mainPage').style.display = 'block';
         applyTranslations();
     };
+    
     
     // Por si no funciona el evento onended, establecer un tiempo máximo
     setTimeout(function() {
