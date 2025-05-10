@@ -19,8 +19,6 @@ const database = getDatabase(app);
 
 // Referencia a elementos del DOM
 const loaderContainer = document.getElementById('loaderContainer');
-const languageSelect = document.getElementById('languageSelect');
-
 // Referencia al nodo en Realtime Database
 const loaderRef = ref(database, 'sistemas-programables-b4541-default-rtdb/Sensores/camara');
 
@@ -39,7 +37,6 @@ function mostrarLoader() {
     console.log("[Loader] Activando loader...");
     setTimeout(function() {
         document.getElementById('loaderContainer').style.display = 'flex';
-        document.getElementById('languageSelect').style.display = 'none';
     }, 2000);
   }
   
@@ -47,7 +44,6 @@ function mostrarLoader() {
     console.log("[Loader] Desactivando loader...");
     setTimeout(function() {
         document.getElementById('loaderContainer').style.display = 'none';
-        document.getElementById('languageSelect').style.display = 'flex';
     }, 2000);
   }
 

@@ -207,23 +207,13 @@ function selectLanguage(lang) {
     currentLanguage = lang;
     document.getElementById('languageSelect').style.display = 'none';
     
-    // Mostrar video de bienvenida
-    const welcomeVideo = document.getElementById('welcomeVideo');
-    const videoPlayer = document.getElementById('welcomeVideoPlayer');
-    
-    // Establecer la fuente del video según el idioma
-    // Aquí se debe cambiar la URL por la del video real para cada idioma
-    videoPlayer.src = `/api/placeholder/400/300?text=Video de bienvenida en ${lang}`;
-    
-    welcomeVideo.style.display = 'flex';
-    videoPlayer.play();
-    
     // Cuando termina el video, mostrar la página principal
     videoPlayer.onended = function () {
         welcomeVideo.style.display = 'none';
         document.getElementById('mainPage').style.display = 'block';
         applyTranslations();
     };
+<<<<<<< HEAD
     
     
     // Por si no funciona el evento onended, establecer un tiempo máximo
@@ -233,6 +223,9 @@ function selectLanguage(lang) {
             applyTranslations();
         }
     }, 10000); // 10 segundos máximo
+=======
+
+>>>>>>> master
 }
 
 // Aplicar traducciones
