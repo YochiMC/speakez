@@ -15,15 +15,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Obtener clima
     function fetchWeather() {
-        fetch('https://api.openweathermap.org/data/2.5/weather?q=Leon,mx&units=metric&appid=TU_API_KEY')
-            .then(response => response.json())
-            .then(data => {
-                const tempElement = document.getElementById('currentTemp');
-                if (tempElement) {
-                    tempElement.textContent = `${Math.round(data.main.temp)}°C`;
-                }
-            })
-            .catch(error => console.error('Error al obtener el clima:', error));
     }
 
     updateClock();

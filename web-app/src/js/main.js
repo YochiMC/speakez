@@ -24,8 +24,6 @@ async function loadSection(id, path) {
 
 window.onload = () => {
     loadComponent('loader-container', 'views/components/loader.html');
-    loadComponent('language-container', 'views/components/language-selector.html');
-    loadComponent('welcome-video-container', 'views/components/welcome-video.html');
     loadComponent('header-container', 'views/components/header.html');
     loadComponent('info-bar-container', 'views/components/info-bar.html');
     loadComponent('dashboard-container', 'views/components/dashboard.html');

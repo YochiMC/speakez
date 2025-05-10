@@ -1,7 +1,7 @@
 :root {
-    --primary-color: #FF5722;
-    --secondary-color: #2196F3;
-    --accent-color: #FFEB3B;
-    --dark-color: #212121;
-    --light-color: #FAFAFA;
+    --primary-color: #007a33; /* Verde esmeralda (Club León) */
+    --secondary-color: #0052a5; /* Azul real (Estado de Guanajuato) */
+    --accent-color: #ffcc00; /* Dorado (Elementos decorativos) */
+    --dark-color: #0b3d0b; /* Verde oscuro (Naturaleza de Guanajuato) */
+    --light-color: #f3f3f3; /* Blanco o un tono neutro claro */
 }

@@ -5,11 +5,6 @@
         padding: 15px;
     }
     
-    .language-container {
-        grid-template-columns: 1fr 1fr;
-        padding: 20px;
-    }
-    
     .secondary-buttons {
         flex-direction: column;
         align-items: center;

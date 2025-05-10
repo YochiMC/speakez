@@ -1,16 +1,3 @@
-// Inicializar la página
-document.addEventListener('DOMContentLoaded', function() {
-    initCamera();
-    updateClock();
-    fetchWeather();
-    
-    // Actualizar el reloj cada segundo
-    setInterval(updateClock, 1000);
-    
-    // Actualizar el clima cada 10 minutos
-    setInterval(fetchWeather, 600000);
-});
-
 // Mostrar subsección
 function showSubsection(section) {
     const sectionElement = document.getElementById(section + '-section');
