@@ -1,36 +1,23 @@
 <!-- INICIO SECCIÓN: shopping-section.html -->
-<div class="subsection" id="shopping-section">
+<div class="subsection" id="shopping-section" style="background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../assets/images/opciones-dashboard/shopping.jpg') center/cover no-repeat;">
     <button class="close-btn" onclick="closeSubsection('shopping-section')">&times;</button>
-    <h2 class="subsection-title" id="shopping-title">SHOPPING EN LEÓN</h2>
+    <h2 class="subsection-title" id="shopping-title">COMPRA EN LEÓN</h2>
     <div class="subsection-container">
-        <!-- Aquí irán los lugares para compras -->
-        <div class="subsection-item">
+        <!-- Zona Piel -->
+        <div class="subsection-item" onclick="loadAndShowContent('shopping', 'zona-piel-shopping')">
             <img src="assets/images/shopping-section/zona piel.jpg" alt="Zona Piel" class="subsection-img">
-            <div class="subsection-content">
-                <h3>Zona Piel</h3>
-                <p id="shopping-piel-desc">El mejor lugar para comprar artículos de cuero de calidad.</p>
-            </div>
         </div>
-        <div class="subsection-item">
+        <!-- Centro Max -->
+        <div class="subsection-item" onclick="loadAndShowContent('shopping', 'centro-max')">
             <img src="assets/images/shopping-section/centro max.jpg" alt="Centro Max" class="subsection-img">
-            <div class="subsection-content">
-                <h3>Centro Max</h3>
-                <p id="centro-max-desc">Centro comercial con tiendas de marcas nacionales e internacionales.</p>
-            </div>
         </div>
-        <div class="subsection-item">
+        <!-- Plaza Mayor -->
+        <div class="subsection-item" onclick="loadAndShowContent('shopping', 'plaza-mayor')">
             <img src="assets/images/shopping-section/plaza mayor.jpg" alt="Plaza Mayor" class="subsection-img">
-            <div class="subsection-content">
-                <h3>Plaza Mayor</h3>
-                <p id="plaza-mayor-desc">Moderno centro comercial con cines y área de restaurantes.</p>
-            </div>
         </div>
-        <div class="subsection-item">
+        <!-- Mercado de Artesanías -->
+        <div class="subsection-item" onclick="loadAndShowContent('shopping', 'mercado-artesanias')">
             <img src="assets/images/shopping-section/mercado de artesanias.jpg" alt="Mercado de Artesanías" class="subsection-img">
-            <div class="subsection-content">
-                <h3>Mercado de Artesanías</h3>
-                <p id="artesanias-desc">Artesanías locales y recuerdos típicos de León y Guanajuato.</p>
-            </div>
         </div>
     </div>
 </div>

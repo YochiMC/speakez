@@ -23,10 +23,13 @@ async function loadSection(id, path) {
 }
 
 window.onload = () => {
+    // Cargar componentes
     loadComponent('loader-container', 'views/components/loader.html');
     loadComponent('header-container', 'views/components/header.html');
     loadComponent('info-bar-container', 'views/components/info-bar.html');
     loadComponent('dashboard-container', 'views/components/dashboard.html');
+    
+    // Cargar secciones
     loadSection('explora-section-container', 'views/sections/explora-section.html');
     loadSection('saborea-section-container', 'views/sections/saborea-section.html');
     loadSection('comida-tipica-section-container', 'views/sections/comida-tipica-section.html');
