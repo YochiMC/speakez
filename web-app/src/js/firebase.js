@@ -4,13 +4,14 @@ import { getDatabase, ref, onValue, set } from "https://www.gstatic.com/firebase
 
 // Configuración de Firebase
 const firebaseConfig = {
-    apiKey: "AIzaSyBX9IIVowjXno6sNHelFnC89mM3kObex-M",
-    authDomain: "sistemas-programables-b4541.firebaseapp.com",
-    databaseURL: "https://sistemas-programables-b4541-default-rtdb.firebaseio.com",
-    projectId: "sistemas-programables-b4541",
-    storageBucket: "sistemas-programables-b4541.firebasestorage.app",
-    messagingSenderId: "332221123941",
-    appId: "1:332221123941:web:f351e73812f2303211a58c"
+    apiKey: "AIzaSyB7S24-eWxAgZPSylbzGwzSdtR2U4L--hE",
+    authDomain: "sistemas-programables-b4-d5995.firebaseapp.com",
+    databaseURL: "https://sistemas-programables-b4-d5995-default-rtdb.firebaseio.com",
+    projectId: "sistemas-programables-b4-d5995",
+    storageBucket: "sistemas-programables-b4-d5995.firebasestorage.app",
+    messagingSenderId: "967331639215",
+    appId: "1:967331639215:web:f743dcf1554659f4c5495a",
+    measurementId: "G-EDNN9CSXPT"
 };
 
 // Inicializar Firebase

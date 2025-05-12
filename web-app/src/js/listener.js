@@ -1,7 +1,7 @@
 //importamos firebae
 import { database, ref, onValue, set } from './firebase.js';
 
-const ayudaRef = ref(database, 'sistemas-programables-b4541-default-rtdb/Sensores/ayuda'); // Cambia 'ayuda' por la ruta correcta en tu base de datos
+const comandoVoz = ref(database, 'Sensores/comando_voz'); // Cambia 'ayuda' por la ruta correcta en tu base de datos
 
 // Mostrar subsección
 function showSubsection(section) {
@@ -101,151 +101,151 @@ document.addEventListener('keydown', function (event) {
 });
 
 // Escuchar el valor "ayuda" en Firebase
-function listenToHelpValue() {
-    onValue(ayudaRef, (snapshot) => {
-        const ayudaValue = snapshot.val();
-        console.log(`Valor de ayuda: ${ayudaValue}`);
-        if (ayudaValue && ayudaValue != null) {
-            console.log(`Valor de ayuda: ${ayudaValue}`);
+function listenToComandoValue() {
+    onValue(comandoVoz, (snapshot) => {
+        const comandoValue = snapshot.val();
+        console.log(`Valor de comando: ${comandoValue}`);
+        if (comandoValue && comandoValue != null) {
+            console.log(`Valor de comando: ${comandoValue}`);
 
             // Lógica para manejar el valor de ayuda
-            if (ayudaValue === 'explora') {
-                resetHelpValue();
+            if (comandoValue === 'explora') {
+                resetComandoValue();
                 showSubsection('explora');
-            } else if (ayudaValue === 'saborea') {
-                resetHelpValue();
+            } else if (comandoValue === 'saborea') {
+                resetComandoValue();
                 showSubsection('explora');
                 showSubsection('saborea');
-            } else if (ayudaValue === 'visita') {
-                resetHelpValue();
+            } else if (comandoValue === 'visita') {
+                resetComandoValue();
                 showSubsection('explora');
                 showSubsection('visita');
-            } else if (ayudaValue === 'catedral') {
-                resetHelpValue();
+            } else if (comandoValue === 'catedral') {
+                resetComandoValue();
                 showSubsection('explora');
                 showSubsection('visita');
                 loadAndShowContent('visita', 'catedral-basilica');
-            } else if (ayudaValue === 'arco') {
-                resetHelpValue();
+            } else if (comandoValue === 'arco') {
+                resetComandoValue();
                 showSubsection('explora');
                 showSubsection('visita');
                 loadAndShowContent('visita', 'arco-triunfal');
-            } else if (ayudaValue === 'forum') {
-                resetHelpValue();
+            } else if (comandoValue === 'forum') {
+                resetComandoValue();
                 showSubsection('explora');
                 showSubsection('visita');
                 loadAndShowContent('visita', 'forum-cultural');
-            } else if (ayudaValue === 'zonapiel') {
-                resetHelpValue();
+            } else if (comandoValue === 'zonapiel') {
+                resetComandoValue();
                 showSubsection('explora');
                 showSubsection('visita');
                 loadAndShowContent('visita', 'zona-piel');
-            } else if (ayudaValue === 'parque') {
-                resetHelpValue();
+            } else if (comandoValue === 'parque') {
+                resetComandoValue();
                 showSubsection('explora');
                 showSubsection('visita');
                 loadAndShowContent('visita', 'parque-metropolitano');
-            } else if (ayudaValue === 'eventos') {
-                resetHelpValue();
+            } else if (comandoValue === 'eventos') {
+                resetComandoValue();
                 showSubsection('eventos');
-            } else if (ayudaValue === 'globo') {
-                resetHelpValue();
+            } else if (comandoValue === 'globo') {
+                resetComandoValue();
                 showSubsection('eventos');
                 loadAndShowContent('eventos', 'festival-globo');
-            } else if (ayudaValue === 'feria') {
-                resetHelpValue();
+            } else if (comandoValue === 'feria') {
+                resetComandoValue();
                 showSubsection('eventos');
                 loadAndShowContent('eventos', 'feria-leon');
-            } else if (ayudaValue === 'rally') {
-                resetHelpValue();
+            } else if (comandoValue === 'rally') {
+                resetComandoValue();
                 showSubsection('eventos');
                 loadAndShowContent('eventos', 'rally-mexico');
-            } else if (ayudaValue === 'arte') {
-                resetHelpValue();
+            } else if (comandoValue === 'arte') {
+                resetComandoValue();
                 showSubsection('eventos');
                 loadAndShowContent('eventos', 'festival-arte');
-            } else if (ayudaValue === 'shopping') {
-                resetHelpValue();
+            } else if (comandoValue === 'shopping') {
+                resetComandoValue();
                 showSubsection('shopping');
-            } else if (ayudaValue === 'piel') {
-                resetHelpValue();
+            } else if (comandoValue === 'piel') {
+                resetComandoValue();
                 showSubsection('shopping');
                 loadAndShowContent('shopping', 'zona-piel-shopping');
-            } else if (ayudaValue === 'centromax') {
-                resetHelpValue();
+            } else if (comandoValue === 'centromax') {
+                resetComandoValue();
                 showSubsection('shopping');
                 loadAndShowContent('shopping', 'centro-max');
-            } else if (ayudaValue === 'mayor') {
-                resetHelpValue();
+            } else if (comandoValue === 'mayor') {
+                resetComandoValue();
                 showSubsection('shopping');
                 loadAndShowContent('shopping', 'plaza-mayor');
-            } else if (ayudaValue === 'artesanias') {
-                resetHelpValue();
+            } else if (comandoValue === 'artesanias') {
+                resetComandoValue();
                 showSubsection('shopping');
                 loadAndShowContent('shopping', 'mercado-artesanias');
-            } else if (ayudaValue === 'hospedaje') {
-                resetHelpValue();
+            } else if (comandoValue === 'hospedaje') {
+                resetComandoValue();
                 showSubsection('hospedaje');
-            } else if (ayudaValue === 'hotsson') {
-                resetHelpValue();
+            } else if (comandoValue === 'hotsson') {
+                resetComandoValue();
                 showSubsection('hospedaje');
                 loadAndShowContent('hospedaje', 'hs-hotsson');
-            } else if (ayudaValue === 'minas') {
-                resetHelpValue();
+            } else if (comandoValue === 'minas') {
+                resetComandoValue();
                 showSubsection('hospedaje');
                 loadAndShowContent('hospedaje', 'real-minas');
-            } else if (ayudaValue === 'victoria') {
-                resetHelpValue();
+            } else if (comandoValue === 'victoria') {
+                resetComandoValue();
                 showSubsection('hospedaje');
                 loadAndShowContent('hospedaje', 'hotel-victoria');
-            } else if (ayudaValue === 'restaurantes') {
-                resetHelpValue();
+            } else if (comandoValue === 'restaurantes') {
+                resetComandoValue();
                 showSubsection('restaurantes');
-            } else if (ayudaValue === 'tequila') {
-                resetHelpValue();
+            } else if (comandoValue === 'tequila') {
+                resetComandoValue();
                 showSubsection('restaurantes');
                 loadAndShowContent('restaurantes', 'la-tequila');
-            } else if (ayudaValue === 'amarello') {
-                resetHelpValue();
+            } else if (comandoValue === 'amarello') {
+                resetComandoValue();
                 showSubsection('restaurantes');
                 loadAndShowContent('restaurantes', 'amarello');
-            } else if (ayudaValue === 'gastro') {
-                resetHelpValue();
+            } else if (comandoValue === 'gastro') {
+                resetComandoValue();
                 showSubsection('restaurantes');
                 loadAndShowContent('restaurantes', 'gastro-bar');
-            } else if (ayudaValue === 'campomar') {
-                resetHelpValue();
+            } else if (comandoValue === 'campomar') {
+                resetComandoValue();
                 showSubsection('restaurantes');
                 loadAndShowContent('restaurantes', 'campomar');
-            } else if (ayudaValue === 'matgo') {
-                resetHelpValue();
+            } else if (comandoValue === 'matgo') {
+                resetComandoValue();
                 showSubsection('restaurantes');
                 loadAndShowContent('restaurantes', 'matgo');
-            } else if (ayudaValue === 'comida') {
-                resetHelpValue();
+            } else if (comandoValue === 'comida') {
+                resetComandoValue();
                 showSubsection('comida-tipica');
-            } else if (ayudaValue === 'guacamayas') {
-                resetHelpValue();
+            } else if (comandoValue === 'guacamayas') {
+                resetComandoValue();
                 showSubsection('comida-tipica');
                 loadAndShowContent('comida-tipica', 'guacamayas');
-            } else if (ayudaValue === 'caldo') {
-                resetHelpValue();
+            } else if (comandoValue === 'caldo') {
+                resetComandoValue();
                 showSubsection('comida-tipica');
                 loadAndShowContent('comida-tipica', 'caldo-oso');
-            } else if (ayudaValue === 'enchiladas') {
-                resetHelpValue();
+            } else if (comandoValue === 'enchiladas') {
+                resetComandoValue();
                 showSubsection('comida-tipica');
                 loadAndShowContent('comida-tipica', 'enchiladas-mineras');
-            } else if (ayudaValue === 'tacos') {
-                resetHelpValue();
+            } else if (comandoValue === 'tacos') {
+                resetComandoValue();
                 showSubsection('comida-tipica');
                 loadAndShowContent('comida-tipica', 'tacos-pastor');
-            } else if (ayudaValue === 'carnitas') {
-                resetHelpValue();
+            } else if (comandoValue === 'carnitas') {
+                resetComandoValue();
                 showSubsection('comida-tipica');
                 loadAndShowContent('comida-tipica', 'carnitas');
-            } else if (ayudaValue === 'cerrar') {
-                resetHelpValue();
+            } else if (comandoValue === 'cerrar') {
+                resetComandoValue();
                 const sections = ['explora', 'eventos', 'shopping', 'hospedaje', 'comida-tipica', 'saborea', 'visita', 'restaurantes'];
                 sections.forEach(section => closeSubsection(section + '-section'));
             }
@@ -253,17 +253,15 @@ function listenToHelpValue() {
     });
 }
 
-function resetHelpValue() {
-    const ayudaRef = ref(database, 'sistemas-programables-b4541-default-rtdb/Sensores/ayuda'); // Cambia la ruta si es necesario
-
-    set(ayudaRef, "")
+function resetComandoValue() {
+    set(comandoVoz, "")
         .then(() => {
-            console.log('El valor de "ayuda" se ha restablecido a una cadena vacía.');
+            console.log('El valor de "comando" se ha restablecido a una cadena vacía.');
         })
         .catch((error) => {
-            console.error('Error al restablecer el valor de "ayuda":', error);
+            console.error('Error al restablecer el valor de "comando":', error);
         });
 }
 
 // Iniciar la escucha en Firebase
-listenToHelpValue();
+listenToComandoValue();
