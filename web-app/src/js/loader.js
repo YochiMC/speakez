@@ -2,7 +2,7 @@
 import { database, ref, onValue, set } from './firebase.js';
 
 // Referencia al nodo en Realtime Database
-const comando = ref(database, 'Sensores/comando_voz');
+const comando = ref(database, 'Voz/texto_reconocido');
 const sensoresRef = ref(database, 'Sensores');
 
 onValue(sensoresRef, (snapshot) => {

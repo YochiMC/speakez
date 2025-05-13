@@ -1,7 +1,7 @@
 //importamos firebae
 import { database, ref, onValue, set } from './firebase.js';
 
-const comandoVoz = ref(database, 'Sensores/comando_voz'); // Cambia 'ayuda' por la ruta correcta en tu base de datos
+const comandoVoz =  ref(database, 'Voz/texto_reconocido'); // Cambia 'ayuda' por la ruta correcta en tu base de datos
 
 // Mostrar subsección
 function showSubsection(section) {
