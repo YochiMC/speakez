@@ -1,62 +1,58 @@
-export class WeatherView {
-    constructor() {
-        this.timeElement = null;
-        this.tempElement = null;
-        this.humidityElement = null;
-    }
+/**
+ * WeatherView.js - Maneja la visualización de datos del clima
+ */
 
+class WeatherView {
     /**
-     * Inicializar la vista del clima
-     */
-    init() {
-        // Obtener referencias a los elementos
-        this.timeElement = document.getElementById('currentTime');
-        this.tempElement = document.getElementById('currentTemp');
-        this.humidityElement = document.getElementById('currentHumidity');
-
-        // Iniciar el reloj
-        this.startClock();
-    }
-
-    /**
-     * Actualizar la temperatura mostrada
-     * @param {string|number} value - Valor de temperatura
-     */
-    updateTemperature(value) {
-        if (this.tempElement) {
-            this.tempElement.textContent = `${value} °C`;
-        }
-    }
-
-    /**
-     * Actualizar la humedad mostrada
-     * @param {string|number} value - Valor de humedad
-     */
-    updateHumidity(value) {
-        if (this.humidityElement) {
-            this.humidityElement.textContent = `${value} %`;
-        }
-    }
-
-    /**
-     * Actualizar el reloj
+     * Actualiza el reloj en la interfaz
      */
     updateClock() {
-        if (!this.timeElement) return;
-
         const now = new Date();
-        const hours = now.getHours().toString().padStart(2, '0');
-        const minutes = now.getMinutes().toString().padStart(2, '0');
-        const seconds = now.getSeconds().toString().padStart(2, '0');
-
-        this.timeElement.textContent = `${hours}:${minutes}:${seconds}`;
+        const timeElement = document.getElementById('currentTime');
+        
+        if (timeElement) {
+            const hours = now.getHours().toString().padStart(2, '0');
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const seconds = now.getSeconds().toString().padStart(2, '0');
+            timeElement.textContent = `${hours}:${minutes}:${seconds}`;
+        } else {
+            console.log("[WeatherView] Elemento de tiempo no encontrado.");
+        }
     }
-
+    
     /**
-     * Iniciar el reloj
+     * Actualiza los valores de temperatura en la interfaz
+     * @param {object} data - Datos del clima (temperatura y humedad)
+     */
+    updateWeatherDisplay(data) {
+        const temperatureElement = document.getElementById('currentTemp');
+        const humidityElement = document.getElementById('currentHumidity');
+        
+        if (temperatureElement && data.temperature) {
+            temperatureElement.textContent = `${data.temperature} °C`;
+        } else {
+            console.log("[WeatherView] Elemento de temperatura no encontrado o sin datos.");
+        }
+        
+        if (humidityElement && data.humidity) {
+            humidityElement.textContent = `${data.humidity} %`;
+        } else {
+            console.log("[WeatherView] Elemento de humedad no encontrado o sin datos.");
+        }
+    }
+    
+    /**
+     * Inicia el reloj con actualizaciones periódicas
      */
     startClock() {
+        // Actualizar inmediatamente
         this.updateClock();
+        
+        // Configurar actualización periódica
         setInterval(() => this.updateClock(), 1000);
     }
 }
+
+// Exporta una instancia única de WeatherView (Singleton)
+const weatherView = new WeatherView();
+export default weatherView;

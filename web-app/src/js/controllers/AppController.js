@@ -1,60 +1,60 @@
-import { SensorModel } from '../models/SensorModel.js';
-import { VoiceController } from './VoiceController.js';
+/**
+ * AppController.js - Controlador principal de la aplicación
+ */
 
-export class AppController {
-    constructor(firebaseModel, uiView, weatherView) {
-        this.firebaseModel = firebaseModel;
-        this.uiView = uiView;
-        this.weatherView = weatherView;
-        this.sensorModel = new SensorModel();
-        this.voiceController = new VoiceController(firebaseModel, uiView);
+import contentModel from '../models/ContentModel.js';
+import uiView from '../views/UIView.js';
+import sectionView from '../views/SectionView.js';
+import navigationController from './NavigationController.js';
+import voiceController from './VoiceController.js';
+import sensorController from './SensorController.js';
+import weatherController from './WeatherController.js';
+import eventListenerController from './EventListenerController.js';
+
+class AppController {
+    constructor() {
+        // Registro de los controladores (no es necesario asignarlos a variables,
+        // ya que los singletons ya han sido inicializados al importarlos)
+        this.navigationController = navigationController;
+        this.voiceController = voiceController;
+        this.sensorController = sensorController;
+        this.weatherController = weatherController;
+        this.eventListenerController = eventListenerController;
     }
-
+    
     /**
-     * Inicializar la aplicación
+     * Inicializa la aplicación
      */
     async init() {
-        console.log('Inicializando aplicación...');
-
-        // Inicializar vistas
-        this.uiView.init();
-        await this.uiView.loadAllComponents();
-        this.weatherView.init();
-
-        // Inicializar controlador de voz
-        this.voiceController.init();
-
-        // Inicializar modelo de sensores
-        this.sensorModel.init(
-            // Callback para sensores de proximidad/rostro
-            (proximidad, rostro) => {
-                this.handleProximidadSensor(proximidad, rostro);
-            },
-            // Callback para sensor de temperatura/humedad
-            (temperatura, humedad) => {
-                this.weatherView.updateTemperature(temperatura);
-                this.weatherView.updateHumidity(humedad);
-            }
-        );
-
-        console.log('Aplicación inicializada correctamente');
+        console.log("[AppController] Inicializando aplicación...");
+        
+        // Cargar la interfaz de usuario
+        await this.loadUI();
+        
+        // Inicializar el controlador de eventos
+        this.eventListenerController.init();
+        
+        console.log("[AppController] Aplicación inicializada correctamente.");
     }
-
+    
     /**
-     * Manejar cambios en los sensores de proximidad y rostro
-     * @param {boolean} proximidad - Estado del sensor de proximidad
-     * @param {boolean} rostro - Estado del sensor de rostro
+     * Carga la interfaz de usuario
      */
-    handleProximidadSensor(proximidad, rostro) {
-        if (proximidad && rostro) {
-            // Ambos sensores activos
-            this.uiView.setLoaderVisible(false);
-        } else if ((proximidad && !rostro) || (!proximidad && rostro)) {
-            // Un sensor activo pero el otro no - esperar 10 segundos
-            setTimeout(() => this.uiView.setLoaderVisible(false), 10000);
-        } else {
-            // Ningún sensor activo
-            this.uiView.setLoaderVisible(true);
+    async loadUI() {
+        try {
+            // Función para cargar contenido
+            const loadContentCallback = async (path) => {
+                return await contentModel.loadContent(path);
+            };
+            
+            // Cargar todos los componentes y secciones
+            await uiView.loadUI(loadContentCallback);
+        } catch (error) {
+            console.error("[AppController] Error al cargar la interfaz:", error);
         }
     }
 }
+
+// Exporta una instancia única de AppController (Singleton)
+const appController = new AppController();
+export default appController;

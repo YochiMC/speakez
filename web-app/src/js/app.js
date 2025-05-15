@@ -1,28 +1,14 @@
-import { database } from './legacy/firebase.js';
-import { FirebaseModel } from './models/FirebaseModel.js';
-import { UIView } from './views/UIView.js';
-import { WeatherView } from './views/WeatherView.js';
-import { AppController } from './controllers/AppController.js';
-
 /**
- * Punto de entrada principal de la aplicación
- * Inicializa la arquitectura MVC
+ * app.js - Punto de entrada de la aplicación
  */
-document.addEventListener('DOMContentLoaded', async () => {
-  console.log('Inicializando aplicación MVC...');
-  
-  try {
-    // Crear instancias de modelos, vistas y controladores
-    const firebaseModel = new FirebaseModel();
-    const uiView = new UIView();
-    const weatherView = new WeatherView();
-    const appController = new AppController(firebaseModel, uiView, weatherView);
-    
+
+import appController from './controllers/AppController.js';
+import './legacy-compatibility.js'; // Cargar compatibilidad con código antiguo
+
+// Cuando se cargue la ventana, inicializar la aplicación
+window.onload = () => {
     // Inicializar la aplicación
-    await appController.init();
-    
-    console.log('Aplicación MVC inicializada correctamente');
-  } catch (error) {
-    console.error('Error al inicializar la aplicación:', error);
-  }
-});
+    appController.init().catch(error => {
+        console.error("[App] Error al inicializar la aplicación:", error);
+    });
+};

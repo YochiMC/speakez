@@ -1,191 +1,114 @@
-export class VoiceController {
-    constructor(firebaseModel, uiView) {
-        this.model = firebaseModel;
-        this.view = uiView;
-        this.commandHandlers = this.initCommandHandlers();
-    }
+/**
+ * VoiceController.js - Controla los comandos de voz y su procesamiento
+ */
 
+import firebaseModel from '../models/FirebaseModel.js';
+import contentModel from '../models/ContentModel.js';
+import navigationView from '../views/NavigationView.js';
+import loaderView from '../views/LoaderView.js';
+
+class VoiceController {
+    constructor() {
+        // Inicializa el listener para comandos de voz
+        this.initVoiceCommandListener();
+    }
+    
     /**
-     * Inicializar el controlador
+     * Inicializa el listener para comandos de voz en Firebase
      */
-    init() {
-        // Suscribirse a cambios en el comando de voz
-        this.model.subscribe('Voz/texto_reconocido', value => {
-            if (value && value !== "") {
-                this.handleCommand(value);
+    initVoiceCommandListener() {
+        firebaseModel.listenToChanges(firebaseModel.voiceCommandRef, (snapshot) => {
+            const commandValue = snapshot.val();
+            
+            if (commandValue && commandValue !== "") {
+                console.log(`[VoiceController] Comando de voz recibido: ${commandValue}`);
+                this.processVoiceCommand(commandValue);
             }
         });
     }
-
+    
     /**
-     * Inicializar los manejadores de comandos
-     * @returns {Object} - Mapa de comandos y sus funciones
+     * Procesa un comando de voz y ejecuta la acción correspondiente
+     * @param {string} command - Comando de voz recibido
      */
-    initCommandHandlers() {
-        // Command pattern implementation
-        return {
-            // Comandos de navegación principal
-            'explora': () => this.view.showSubsection('explora'),
-            'saborea': () => {
-                this.view.showSubsection('explora');
-                this.view.showSubsection('saborea');
-            },
-            'visita': () => {
-                this.view.showSubsection('explora');
-                this.view.showSubsection('visita');
-            },
-            'eventos': () => this.view.showSubsection('eventos'),
-            'shopping': () => this.view.showSubsection('shopping'),
-            'hospedaje': () => this.view.showSubsection('hospedaje'),
-            'restaurantes': () => this.view.showSubsection('restaurantes'),
-            'comida': () => this.view.showSubsection('comida-tipica'),
-
-            // Comandos para lugares
-            'catedral': () => {
-                this.view.showSubsection('explora');
-                this.view.showSubsection('visita');
-                this.view.loadAndShowContent('visita', 'catedral-basilica');
-            },
-            'arco': () => {
-                this.view.showSubsection('explora');
-                this.view.showSubsection('visita');
-                this.view.loadAndShowContent('visita', 'arco-triunfal');
-            },
-            'forum': () => {
-                this.view.showSubsection('explora');
-                this.view.showSubsection('visita');
-                this.view.loadAndShowContent('visita', 'forum-cultural');
-            },
-            'zonapiel': () => {
-                this.view.showSubsection('explora');
-                this.view.showSubsection('visita');
-                this.view.loadAndShowContent('visita', 'zona-piel');
-            },
-            'parque': () => {
-                this.view.showSubsection('explora');
-                this.view.showSubsection('visita');
-                this.view.loadAndShowContent('visita', 'parque-metropolitano');
-            },
-
-            // Comandos para eventos
-            'globo': () => {
-                this.view.showSubsection('eventos');
-                this.view.loadAndShowContent('eventos', 'festival-globo');
-            },
-            'feria': () => {
-                this.view.showSubsection('eventos');
-                this.view.loadAndShowContent('eventos', 'feria-leon');
-            },
-            'rally': () => {
-                this.view.showSubsection('eventos');
-                this.view.loadAndShowContent('eventos', 'rally-mexico');
-            },
-            'arte': () => {
-                this.view.showSubsection('eventos');
-                this.view.loadAndShowContent('eventos', 'festival-arte');
-            },
-
-            // Comandos para shopping
-            'piel': () => {
-                this.view.showSubsection('shopping');
-                this.view.loadAndShowContent('shopping', 'zona-piel-shopping');
-            },
-            'centromax': () => {
-                this.view.showSubsection('shopping');
-                this.view.loadAndShowContent('shopping', 'centro-max');
-            },
-            'mayor': () => {
-                this.view.showSubsection('shopping');
-                this.view.loadAndShowContent('shopping', 'plaza-mayor');
-            },
-            'artesanias': () => {
-                this.view.showSubsection('shopping');
-                this.view.loadAndShowContent('shopping', 'mercado-artesanias');
-            },
-
-            // Comandos para hospedaje
-            'hotsson': () => {
-                this.view.showSubsection('hospedaje');
-                this.view.loadAndShowContent('hospedaje', 'hs-hotsson');
-            },
-            'minas': () => {
-                this.view.showSubsection('hospedaje');
-                this.view.loadAndShowContent('hospedaje', 'real-minas');
-            },
-            'victoria': () => {
-                this.view.showSubsection('hospedaje');
-                this.view.loadAndShowContent('hospedaje', 'hotel-victoria');
-            },
-
-            // Comandos para restaurantes
-            'tequila': () => {
-                this.view.showSubsection('restaurantes');
-                this.view.loadAndShowContent('restaurantes', 'la-tequila');
-            },
-            'amarello': () => {
-                this.view.showSubsection('restaurantes');
-                this.view.loadAndShowContent('restaurantes', 'amarello');
-            },
-            'gastro': () => {
-                this.view.showSubsection('restaurantes');
-                this.view.loadAndShowContent('restaurantes', 'gastro-bar');
-            },
-            'campomar': () => {
-                this.view.showSubsection('restaurantes');
-                this.view.loadAndShowContent('restaurantes', 'campomar');
-            },
-            'matgo': () => {
-                this.view.showSubsection('restaurantes');
-                this.view.loadAndShowContent('restaurantes', 'matgo');
-            },
-
-            // Comandos para comida típica
-            'guacamayas': () => {
-                this.view.showSubsection('comida-tipica');
-                this.view.loadAndShowContent('comida-tipica', 'guacamayas');
-            },
-            'caldo': () => {
-                this.view.showSubsection('comida-tipica');
-                this.view.loadAndShowContent('comida-tipica', 'caldo-oso');
-            },
-            'enchiladas': () => {
-                this.view.showSubsection('comida-tipica');
-                this.view.loadAndShowContent('comida-tipica', 'enchiladas-mineras');
-            },
-            'tacos': () => {
-                this.view.showSubsection('comida-tipica');
-                this.view.loadAndShowContent('comida-tipica', 'tacos-pastor');
-            },
-            'carnitas': () => {
-                this.view.showSubsection('comida-tipica');
-                this.view.loadAndShowContent('comida-tipica', 'carnitas');
-            },
-
-            // Comandos de sistema
-            'cerrar': () => {
-                const sections = ['explora', 'eventos', 'shopping', 'hospedaje', 'comida-tipica', 'saborea', 'visita', 'restaurantes'];
-                sections.forEach(section => this.view.closeSubsection(section + '-section'));
-            },
-            'hola': () => this.view.setLoaderVisible(false),
-            'quetal': () => this.view.setLoaderVisible(false),
-            'buenas': () => this.view.setLoaderVisible(false),
-            'adios': () => this.view.setLoaderVisible(true),
-            'hastaluego': () => this.view.setLoaderVisible(true),
-        };
-    }
-
-    /**
-     * Manejar un comando recibido
-     * @param {string} command - Comando a procesar
-     */
-    handleCommand(command) {
-        console.log(`Manejando comando: ${command}`);
-
-        if (this.commandHandlers[command]) {
-            this.commandHandlers[command]();
+    async processVoiceCommand(command) {
+        // Obtener la acción asociada al comando
+        const action = contentModel.getCommandAction(command);
+        
+        // Resetear el valor del comando en Firebase
+        await firebaseModel.resetVoiceCommand();
+        
+        // Si no hay acción asociada, salir
+        if (!action) {
+            console.log(`[VoiceController] Comando no reconocido: ${command}`);
+            return;
         }
-
-        // Resetear el comando
-        this.model.resetComando();
+        
+        // Procesar según el tipo de acción
+        if (action.action === 'close') {
+            this.handleCloseCommand();
+        } else if (action.action === 'greeting') {
+            loaderView.hideLoader();
+        } else if (action.action === 'farewell') {
+            loaderView.showLoader();
+        } else if (action.action === 'show') {
+            // Mostrar sección principal
+            navigationView.showSubsection(action.section);
+            
+            // Si tiene una sección padre, mostrarla también
+            if (action.parent) {
+                navigationView.showSubsection(action.parent);
+            }
+        } else if (action.content) {
+            // Es un comando para mostrar contenido específico
+            
+            // Mostrar sección principal primero
+            navigationView.showSubsection(action.section);
+            
+            // Si tiene una sección padre, mostrarla también
+            if (action.parent) {
+                navigationView.showSubsection(action.parent);
+            }
+            
+            // Cargar y mostrar el contenido específico
+            await this.loadAndShowSpecificContent(action.section, action.content);
+        }
+    }
+    
+    /**
+     * Maneja el comando de cierre
+     */
+    handleCloseCommand() {
+        const sections = contentModel.getAllSections();
+        sections.forEach(section => {
+            navigationView.closeSubsection(section + '-section');
+        });
+    }
+    
+    /**
+     * Carga y muestra contenido específico
+     * @param {string} section - Sección del contenido
+     * @param {string} contentName - Nombre del contenido
+     */
+    async loadAndShowSpecificContent(section, contentName) {
+        const contentId = `${contentName}-content`;
+        const path = contentModel.getContentPath(section, contentName);
+        
+        try {
+            // Cargar el contenido
+            const htmlContent = await contentModel.loadContent(path);
+            
+            // Actualizar el contenedor
+            navigationView.updateContentContainer(contentId, htmlContent);
+            
+            // Mostrar el contenido
+            navigationView.showContent(contentId);
+        } catch (error) {
+            console.error(`[VoiceController] Error cargando ${path}:`, error);
+        }
     }
 }
+
+// Exporta una instancia única de VoiceController (Singleton)
+const voiceController = new VoiceController();
+export default voiceController;
