@@ -15,3 +15,6 @@ Listo, tenemos la aplicación, el funcionamiento dinamico de la aplicación va e
 ![imagen](https://github.com/user-attachments/assets/9073f38d-0f77-4ed3-a21b-e598af638abe)
 
 https://sistemas-programables-b4-d5995-default-rtdb.firebaseio.com/
+
+El sitio web quedó desplegado para pruebas en la siguiente liga:
+https://yochimc.github.io/speakez/web-app/src/
